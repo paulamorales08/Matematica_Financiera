@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio</title>
+    <link rel="stylesheet" href="js/bootstrap.min.css" />
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="js/jquery-ui.min.css" />
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <style>
+      body {
+        background-color: lightseagreen;
+      }
+      #container {
+        width: 65%;
+        margin: 0px auto;
+        margin-top: 30px;
+        padding: 30px;
+        background: white;
+      }
+      h2 {
+        text-align: center;
+      }
+      #cuadro {
+        display: none;
+      }
+      table {
+        text-align: center;
+      }
+      table td {
+        border: black 1px solid;
+        border-top: black 1px solid;
+      }
+      a {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h2>Calcular datos del credito</h2>
+      <hr />
+      <form id="formulario">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Tipo de Persona</label>
+            <select id="persona" class="form-control">
+              <option value="" selected>Seleccione</option>
+              <option value="1">Natural</option>
+              <option value="2">Juridica</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Capital</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">$</div>
+              </div>
+              <input
+                type="number"
+                class="form-control"
+                id="capital"
+                placeholder="Ingrese su Capital"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label>Plazo</label>
+            <input type="number" class="form-control" id="plazo" />
+          </div>
+          <div class="form-group col-md-4">
+            <label>Tasa de Interes</label>
+            <select id="tasai" class="form-control">
+              <option value="" selected>Seleccione</option>
+              <option value="1">Tasa Anticipada</option>
+              <option value="2">Tasa Vencida</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Tipo de Tasa</label>
+            <select id="subtasa" class="form-control">
+              <option value="" selected>Seleccione</option>
+              <option value="12">Mensual</option>
+              <option value="6">Bimestral</option>
+              <option value="4">Trimestral</option>
+              <option value="2">Semestral</option>
+              <option value="1">Anual</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label>Interes</label>
+            <input type="number" class="form-control" id="interes" />
+          </div>
+        </div>
+        <hr />
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Mes de Amortizacion</label>
+            <input type="number" class="form-control" id="mesamort" />
+          </div>
+          <div class="form-group col-md-4">
+            <label>Valor de Amortizacion</label>
+            <input type="number" class="form-control" id="valoramort" />
+          </div>
+        </div>
+        <hr />
+        <input
+          type="button"
+          class="btn btn-primary"
+          id="enviar"
+          value="Enviar"
+        />
+      </form>
+      <div id="cuadro">
+        <hr />
+        <div class="alert alert-primary" id="contenido">
+          <div id="resulinteres"></div>
+          <div class="alert alert-secondary" id="operainteres"></div>
+          <div id="resulcuota"></div>
+          <div class="alert alert-secondary" id="operacuota"></div>
+        </div>
+        <div class="alert alert-primary">
+          <table class="table table-sm">
+            <thead class="thead-dark">
+              <tr>
+                <th>Num</th>
+                <th>Capital</th>
+                <th>Interes</th>
+                <th>Amortizacion</th>
+                <th>Cuota</th>
+                <th>Saldo</th>
+              </tr>
+            </thead>
+            <tbody id="tabla"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
