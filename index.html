@@ -44,12 +44,22 @@
       <hr />
       <form id="formulario">
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div id="pers" class="form-group col-md-6">
             <label>Tipo de Persona</label>
-            <select id="persona" class="form-control">
-              <option value="" selected>Seleccione</option>
-              <option value="1">Natural</option>
+            <select id="persona" class="form-control" onChange="Tipo(this)">
+              <option value="1" selected>Natural</option>
               <option value="2">Juridica</option>
+            </select>
+          </div>
+          <div
+            class="form-group col-md-3"
+            id="tipocuotas"
+            style="display: none;"
+          >
+            <label>Tipo de Cuotas</label>
+            <select id="tipcuota" class="form-control">
+              <option value="2">Semestral</option>
+              <option value="1">Anual</option>
             </select>
           </div>
           <div class="form-group col-md-6">
@@ -75,7 +85,6 @@
           <div class="form-group col-md-4">
             <label>Tasa de Interes</label>
             <select id="tasai" class="form-control">
-              <option value="" selected>Seleccione</option>
               <option value="1">Tasa Anticipada</option>
               <option value="2">Tasa Vencida</option>
             </select>
@@ -83,7 +92,6 @@
           <div class="form-group col-md-4">
             <label>Tipo de Tasa</label>
             <select id="subtasa" class="form-control">
-              <option value="" selected>Seleccione</option>
               <option value="12">Mensual</option>
               <option value="6">Bimestral</option>
               <option value="4">Trimestral</option>
@@ -140,5 +148,18 @@
         </div>
       </div>
     </div>
+    <script>
+      divT = document.getElementById("tipocuotas");
+      divS = document.getElementById("pers");
+      function Tipo(sel) {
+        if (sel.value == 1) {
+          divT.style.display = "none";
+          divS.className = " form-group col-md-6";
+        } else {
+          divT.style.display = "";
+          divS.className = " form-group col-md-3";
+        }
+      }
+    </script>
   </body>
 </html>

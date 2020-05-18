@@ -5,7 +5,8 @@ $(document).ready(function () {
   $("#enviar").click(function () {
     $("#cuadro").show();
 
-    var persona = document.querySelector("#persona").value;
+    var persona = parseInt(document.querySelector("#persona").value);
+    var tipcuota = document.querySelector("#tipcuota").value;
     var capital = document.querySelector("#capital").value;
     var plazo = document.querySelector("#plazo").value;
     var tasai = document.querySelector("#tasai").value;
@@ -19,27 +20,34 @@ $(document).ready(function () {
     var operacuota = document.querySelector("#operacuota");
     var tabla = document.querySelector("#tabla");
     tabla.innerHTML = "";
-
+    if (persona == 1) {
+      tipcuota = 12;
+      tipcuota = parseInt(tipcuota);
+    } else if (persona == 2) {
+      tipcuota = tipcuota;
+      tipcuota = parseInt(tipcuota);
+    }
     if (tasai == 1) {
       var interes = interes / 100;
       var ia = interes / subtasa;
       var i = ia / (1 - ia);
-      var valor = Math.pow(1 + i, subtasa / 12) - 1;
+      var valor = Math.pow(1 + i, subtasa / tipcuota) - 1;
       var val = valor.toFixed(9);
       resulinteres.innerHTML = `<p>Interes: ${val}</p>`;
       operainteres.innerHTML = `<p><b>Operacion</b></p>`;
       operainteres.innerHTML += `<p><b>1.</b> ${interes} / ${subtasa} = ${ia} </p>`;
       operainteres.innerHTML += `<p><b>2.</b> ${ia} / (1 - ${ia}) = ${i} </p>`;
-      operainteres.innerHTML += `<p><b>3.</b> (1+${i})^(${subtasa}/12))-1 = ${val}</p>`;
+      operainteres.innerHTML += `<p><b>3.</b> (1+${i})^(${subtasa}/${tipcuota}))-1 = ${val}</p>`;
     }
     if (tasai == 2) {
       var interes = interes / 100;
       var i = interes / subtasa;
-      console.log(i);
-      var valor = Math.pow(1 + i, subtasa / 12) - 1;
-      console.log(valor);
-      var val = valor * 12;
-      console.log(val);
+      var valor = Math.pow(1 + i, subtasa / tipcuota) - 1;
+      var val = valor.toFixed(9);
+      resulinteres.innerHTML = `<p>Interes: ${val}</p>`;
+      operainteres.innerHTML = `<p><b>Operacion</b></p>`;
+      operainteres.innerHTML += `<p><b>1.</b> ${interes} / ${subtasa} = ${i} </p>`;
+      operainteres.innerHTML += `<p><b>2.</b> (1+${i})^(${subtasa}/${tipcuota}))-1 = ${val}</p>`;
     }
     var r = Math.pow(1 + valor, -plazo);
     r = 1 - r;
