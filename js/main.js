@@ -9,16 +9,25 @@ $(document).ready(function () {
     var tipcuota = document.querySelector("#tipcuota").value;
     var capital = document.querySelector("#capital").value;
     var plazo = document.querySelector("#plazo").value;
-    var tasai = document.querySelector("#tasai").value;
+    var tasai = parseInt(document.querySelector("#tasai").value);
     var subtasa = document.querySelector("#subtasa").value;
     var interes = document.querySelector("#interes").value;
-    var mesamort = document.querySelector("#mesamort").value;
-    var valoramort = document.querySelector("#valoramort").value;
+    var mesamort1 = document.querySelector("#mesamort1").value;
+    var valoramort1 = document.querySelector("#valoramort1").value;
+    var tipodis1 = document.querySelector("#tipodis1").value;
+    var mesamort2 = document.querySelector("#mesamort2").value;
+    var valoramort2 = document.querySelector("#valoramort2").value;
+    var tipodis2 = document.querySelector("#tipodis2").value;
+    var mesamort3 = document.querySelector("#mesamort3").value;
+    var valoramort3 = document.querySelector("#valoramort3").value;
+    var tipodis3 = document.querySelector("#tipodis3").value;
     var resulinteres = document.querySelector("#resulinteres");
     var operainteres = document.querySelector("#operainteres");
     var resulcuota = document.querySelector("#resulcuota");
     var operacuota = document.querySelector("#operacuota");
     var tabla = document.querySelector("#tabla");
+    var mesamort, valoramort, tipodis;
+    var tipodis = "";
     tabla.innerHTML = "";
     if (persona == 1) {
       tipcuota = 12;
@@ -27,27 +36,46 @@ $(document).ready(function () {
       tipcuota = tipcuota;
       tipcuota = parseInt(tipcuota);
     }
-    if (tasai == 1) {
-      var interes = interes / 100;
-      var ia = interes / subtasa;
-      var i = ia / (1 - ia);
-      var valor = Math.pow(1 + i, subtasa / tipcuota) - 1;
-      var val = valor.toFixed(9);
-      resulinteres.innerHTML = `<p>Interes: ${val}</p>`;
-      operainteres.innerHTML = `<p><b>Operacion</b></p>`;
-      operainteres.innerHTML += `<p><b>1.</b> ${interes} / ${subtasa} = ${ia} </p>`;
-      operainteres.innerHTML += `<p><b>2.</b> ${ia} / (1 - ${ia}) = ${i} </p>`;
-      operainteres.innerHTML += `<p><b>3.</b> (1+${i})^(${subtasa}/${tipcuota}))-1 = ${val}</p>`;
-    }
-    if (tasai == 2) {
-      var interes = interes / 100;
-      var i = interes / subtasa;
-      var valor = Math.pow(1 + i, subtasa / tipcuota) - 1;
-      var val = valor.toFixed(9);
-      resulinteres.innerHTML = `<p>Interes: ${val}</p>`;
-      operainteres.innerHTML = `<p><b>Operacion</b></p>`;
-      operainteres.innerHTML += `<p><b>1.</b> ${interes} / ${subtasa} = ${i} </p>`;
-      operainteres.innerHTML += `<p><b>2.</b> (1+${i})^(${subtasa}/${tipcuota}))-1 = ${val}</p>`;
+    var interes = interes / 100;
+    switch (tasai) {
+      case 1:
+        var ia = interes / subtasa;
+        var i = ia / (1 - ia);
+        var valor = Math.pow(1 + i, subtasa / tipcuota) - 1;
+        var val = valor.toFixed(9);
+        resulinteres.innerHTML = `<p>Interes: ${val}</p>`;
+        operainteres.innerHTML = `<p><b>Operacion</b></p>`;
+        operainteres.innerHTML += `<p><b>1.</b> ${interes} / ${subtasa} = ${ia} </p>`;
+        operainteres.innerHTML += `<p><b>2.</b> ${ia} / (1 - ${ia}) = ${i} </p>`;
+        operainteres.innerHTML += `<p><b>3.</b> (1+${i})^(${subtasa}/${tipcuota}))-1 = ${val}</p>`;
+        break;
+      case 2:
+        var i = interes / subtasa;
+        var valor = Math.pow(1 + i, subtasa / tipcuota) - 1;
+        var val = valor.toFixed(9);
+        resulinteres.innerHTML = `<p>Interes: ${val}</p>`;
+        operainteres.innerHTML = `<p><b>Operacion</b></p>`;
+        operainteres.innerHTML += `<p><b>1.</b> ${interes} / ${subtasa} = ${i} </p>`;
+        operainteres.innerHTML += `<p><b>2.</b> ((1+${i})^(${subtasa}/${tipcuota}))-1 = ${val}</p>`;
+        break;
+      case 3:
+        var ia = interes;
+        var i = ia / (1 - ia);
+        var valor = Math.pow(1 + i, subtasa / tipcuota) - 1;
+        var val = valor.toFixed(9);
+        resulinteres.innerHTML = `<p>Interes: ${val}</p>`;
+        operainteres.innerHTML = `<p><b>Operacion</b></p>`;
+        operainteres.innerHTML += `<p><b>1.</b> ${ia} / (1 - ${ia}) = ${i} </p>`;
+        operainteres.innerHTML += `<p><b>2.</b> (1+${i})^(${subtasa}/${tipcuota}))-1 = ${val}</p>`;
+        break;
+      case 4:
+        var i = interes;
+        var valor = Math.pow(1 + i, subtasa / tipcuota) - 1;
+        var val = valor.toFixed(9);
+        resulinteres.innerHTML = `<p>Interes: ${val}</p>`;
+        operainteres.innerHTML = `<p><b>Operacion</b></p>`;
+        operainteres.innerHTML += `<p><b>1.</b> ((1+${i})^(${subtasa}/${tipcuota}))-1 = ${val}</p>`;
+        break;
     }
     var r = Math.pow(1 + valor, -plazo);
     r = 1 - r;
@@ -65,6 +93,21 @@ $(document).ready(function () {
       var int = (cap * val).toFixed();
       var val3 = "";
       var clase = "";
+      if (mesamort1 == a) {
+        mesamort = mesamort1;
+        valoramort = valoramort1;
+        tipodis = tipodis1;
+      } else {
+        if (mesamort2 == a) {
+          mesamort = mesamort2;
+          valoramort = valoramort2;
+          tipodis = tipodis2;
+        } else if (mesamort3 == a) {
+          mesamort = mesamort3;
+          valoramort = valoramort3;
+          tipodis = tipodis3;
+        }
+      }
       if (mesamort == a) {
         clase = "bg-success";
         var cuota = "Valor Amortizacion";
@@ -86,6 +129,9 @@ $(document).ready(function () {
             <td><a title="${cap} - ${amorti}">${saldo}</a></td>
           </tr>
           `;
+        if (tipodis == 2) {
+          valor = Math.pow(1 + val);
+        }
       } else if (i <= 1) {
         i++;
         if (i == 2) {
